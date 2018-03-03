@@ -1,0 +1,4 @@
+services:
+#    sysvet.example:
+#        class: SysvetBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
