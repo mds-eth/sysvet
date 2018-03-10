@@ -1,0 +1,35 @@
+<?php
+
+namespace SysvetBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="servicos")
+ */
+class Servico {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $idServico;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $nomeServico;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $descricaoServico;
+
+    /**
+     * @ORM\Column(type="decimal", scale=2)
+     */
+    private $precoServico;
+
+}
