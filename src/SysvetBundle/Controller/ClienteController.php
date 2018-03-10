@@ -5,29 +5,29 @@ namespace SysvetBundle\Controller;
 use SysvetBundle\Entity\Cliente;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Cliente controller.
  *
  * @Route("cliente")
  */
-class ClienteController extends Controller
-{
+class ClienteController extends Controller {
+
     /**
      * Lists all cliente entities.
      *
      * @Route("/", name="cliente_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $clientes = $em->getRepository('SysvetBundle:Cliente')->findAll();
 
         return $this->render('cliente/index.html.twig', array(
-            'clientes' => $clientes,
+                    'clientes' => $clientes,
         ));
     }
 
@@ -37,8 +37,7 @@ class ClienteController extends Controller
      * @Route("/new", name="cliente_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $cliente = new Cliente();
         $form = $this->createForm('SysvetBundle\Form\ClienteType', $cliente);
         $form->handleRequest($request);
@@ -52,8 +51,8 @@ class ClienteController extends Controller
         }
 
         return $this->render('cliente/new.html.twig', array(
-            'cliente' => $cliente,
-            'form' => $form->createView(),
+                    'cliente' => $cliente,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -63,13 +62,12 @@ class ClienteController extends Controller
      * @Route("/{id}", name="cliente_show")
      * @Method("GET")
      */
-    public function showAction(Cliente $cliente)
-    {
+    public function showAction(Cliente $cliente) {
         $deleteForm = $this->createDeleteForm($cliente);
 
         return $this->render('cliente/show.html.twig', array(
-            'cliente' => $cliente,
-            'delete_form' => $deleteForm->createView(),
+                    'cliente' => $cliente,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -79,8 +77,7 @@ class ClienteController extends Controller
      * @Route("/{id}/edit", name="cliente_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Cliente $cliente)
-    {
+    public function editAction(Request $request, Cliente $cliente) {
         $deleteForm = $this->createDeleteForm($cliente);
         $editForm = $this->createForm('SysvetBundle\Form\ClienteType', $cliente);
         $editForm->handleRequest($request);
@@ -92,9 +89,9 @@ class ClienteController extends Controller
         }
 
         return $this->render('cliente/edit.html.twig', array(
-            'cliente' => $cliente,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'cliente' => $cliente,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -104,8 +101,7 @@ class ClienteController extends Controller
      * @Route("/{id}", name="cliente_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Cliente $cliente)
-    {
+    public function deleteAction(Request $request, Cliente $cliente) {
         $form = $this->createDeleteForm($cliente);
         $form->handleRequest($request);
 
@@ -125,12 +121,12 @@ class ClienteController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Cliente $cliente)
-    {
+    private function createDeleteForm(Cliente $cliente) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('cliente_delete', array('id' => $cliente->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('cliente_delete', array('id' => $cliente->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

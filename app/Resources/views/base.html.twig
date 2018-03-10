@@ -28,10 +28,10 @@
                     <a href="#">Usuários</a>
                 </li>
                 <li>
-                    <a href="#">Clientes</a>
+                    <a href="{{ path("cliente_index") }}">Clientes</a>
                 </li>
                 <li>
-                    <a href="#">Serviços</a>
+                    <a href="{{ path("servico_index") }}">Serviços</a>
                 </li>
                 <li>
                     <a href="#">Agendamentos</a>
@@ -42,8 +42,8 @@
             </ul>
         </div>
         <div id="page-content-wrapper">
-            {% block body %}{% endblock %}
-        </div>
+        {% block body %}{% endblock %}
+    </div>
 </div> 
 
 {% block javascripts %}{% endblock %}
