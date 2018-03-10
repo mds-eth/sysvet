@@ -6,7 +6,7 @@
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <script src="/js/jquery/jquery.js" type="text/javascript" ></script>
-    <script src="/js/bootstrap.js" type="text/javascript" ></script>
+    <script src="/js/bootstrap.bundle.js" type="text/javascript" ></script>
     <link href="/css/bootstrap.css" rel="stylesheet"  />
     <link href="/css/simple-sidebar.css" rel="stylesheet"  />
 </head>
@@ -34,7 +34,7 @@
                     <a href="{{ path("servico_index") }}">Serviços</a>
                 </li>
                 <li>
-                    <a href="#">Agendamentos</a>
+                    <a href="{{ path("agendamento_index") }}">Agendamentos</a>
                 </li>
                 <li>
                     <a href="#">Relatórios</a>

@@ -38,11 +38,15 @@ class ClienteController extends Controller {
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request) {
+
         $cliente = new Cliente();
+        $cliente->setDataCadastro(new \DateTime());
+        $cliente->setNome("Nome de teste");
         $form = $this->createForm('SysvetBundle\Form\ClienteType', $cliente);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($cliente);
             $em->flush();
@@ -63,6 +67,7 @@ class ClienteController extends Controller {
      * @Method("GET")
      */
     public function showAction(Cliente $cliente) {
+
         $deleteForm = $this->createDeleteForm($cliente);
 
         return $this->render('cliente/show.html.twig', array(
@@ -78,6 +83,7 @@ class ClienteController extends Controller {
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Cliente $cliente) {
+
         $deleteForm = $this->createDeleteForm($cliente);
         $editForm = $this->createForm('SysvetBundle\Form\ClienteType', $cliente);
         $editForm->handleRequest($request);

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>Agendamentos  <a href="{{ path('agendamento_new') }}" class="btn btn-primary float-right">Criar novo agendamento</a></h3>
+    <div class="card">
+        <div class="card-header"> Filtrar por</div>
+        <div class="card-body">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Status
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="?status=NOVO">Novo</a>
+                    <a class="dropdown-item" href="?status=CONFIRMADO">Confirmado</a>
+                    <a class="dropdown-item" href="?status=CANCELADO">Cancelado</a>
+                    <a class="dropdown-item" href="?status=REALIZADO">Realizado</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered" style="text-align: center">
+        <thead>
+            <tr>
+                <th>OS</th>
+                <th>Horario</th>
+                <th>Cliente</th>
+                <th>Serviço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for agendamento in agendamentos %}
+                <tr>
+                    <td><a href="{{ path('agendamento_show', { 'id': agendamento.id }) }}">{{ agendamento.id }}</a></td>
+                    <td>{% if agendamento.horario %}{{ agendamento.horario|date('d/m/Y H:i') }}{% endif %}</td>
+                    <td>{{ agendamento.cliente }}</td>
+                    <td>{{ agendamento.servico }}</td>
+                    <td>
+                        <a href="{{ path('agendamento_show', { 'id': agendamento.id }) }}" class="btn btn-info">Visualizar </a>
+                        <a href="{{ path('agendamento_edit', { 'id': agendamento.id }) }}" class="btn btn-primary">Editar</a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+
+
+{% endblock %}

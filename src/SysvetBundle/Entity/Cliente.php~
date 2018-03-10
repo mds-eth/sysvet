@@ -43,6 +43,16 @@ class Cliente {
     private $dataCadastro;
 
     /**
+     * @ORM\Column(type="string", length=1)
+     */
+    private $sexo;
+
+    public function __toString() {
+
+        return $this->nome;
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -159,6 +169,28 @@ class Cliente {
      */
     public function getDataCadastro() {
         return $this->dataCadastro;
+    }
+
+    /**
+     * Set sexo
+     *
+     * @param string $sexo
+     *
+     * @return Cliente
+     */
+    public function setSexo($sexo) {
+        $this->sexo = $sexo;
+
+        return $this;
+    }
+
+    /**
+     * Get sexo
+     *
+     * @return string
+     */
+    public function getSexo() {
+        return $this->sexo;
     }
 
 }

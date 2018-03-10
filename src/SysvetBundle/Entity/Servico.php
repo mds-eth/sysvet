@@ -32,6 +32,11 @@ class Servico {
      */
     private $precoServico;
 
+    public function __toString() {
+
+        return $this->nomeServico . ' -> ' . $this->precoServico;
+    }
+
     /**
      * Get idServico
      *

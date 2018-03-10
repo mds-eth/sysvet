@@ -1,40 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Servico</h1>
+    <h1>Serviço</h1>
+    <a href="{{ path('servico_index') }}" class="btn btn-primary float-left" style="margin: 5px">Voltar a Listagem</a>
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Idservico</th>
+                <th>ID</th>
                 <td>{{ servico.idServico }}</td>
             </tr>
             <tr>
-                <th>Nomeservico</th>
+                <th>Nome Serviço</th>
                 <td>{{ servico.nomeServico }}</td>
             </tr>
             <tr>
-                <th>Descricaoservico</th>
+                <th>Descrição Serviço</th>
                 <td>{{ servico.descricaoServico }}</td>
             </tr>
             <tr>
-                <th>Precoservico</th>
+                <th>Preço Serviço</th>
                 <td>{{ servico.precoServico }}</td>
             </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('servico_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('servico_edit', { 'idServico': servico.idServico }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+
+    <a href="{{ path('servico_edit', { 'idServico': servico.idServico }) }}"  class="btn btn-primary float-left" style="margin: 5px">Editar</a>
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Cancelar" class="btn btn-danger" style="margin: 5px"> 
+    {{ form_end(delete_form) }}
+</li>
+</ul>
 {% endblock %}
