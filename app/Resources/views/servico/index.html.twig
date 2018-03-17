@@ -6,10 +6,18 @@
     <table class="table table-striped" style="text-align: center">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nome Serviço</th>
-                <th>Descricao Serviço</th>
-                <th>Preço Serviço</th>
+                <th>
+                    <a href="?ord=idServico" {% if ord == 'idServico' %} class="text-dark" {% endif%}>ID</a>
+                </th>
+                <th>
+                    <a href="?ord=nomeServico" {% if ord == 'nomeServico' %} class="text-dark" {% endif%}>Nome Serviço</a>
+                </th>
+                <th>
+                    <a href="?ord=descricaoServico" {% if ord == 'descricaoServico' %} class="text-dark" {% endif%}>Descricao Serviço</a>
+                </th>
+                <th>
+                    <a href="?ord=precoServico" {% if ord == 'precoServico' %} class="text-dark" {% endif%}>Preço Serviço</a>
+                </th>
                 <th>Ações</th>
             </tr>
         </thead>

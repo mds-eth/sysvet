@@ -28,8 +28,7 @@ class ClienteType extends AbstractType {
                     )
                 ))
                 ->add('email')
-                ->add('telefone')
-                ->add('dataCadastro', HiddenType::class);
+                ->add('telefone');
     }
 
     /**

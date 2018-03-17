@@ -1,10 +1,30 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="/locales/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('#dataSel').datepicker({
+            format: "dd/mm/yyyy",
+            language: "pt-BR",
+        }).on('changeDate', function (e) {
+
+            location.href = ("?data=" + $("#dataSel").val());
+
+        });
+
+    </script>
+{% endblock %}
+
 {% block body %}
-    <h3>Agendamentos  <a href="{{ path('agendamento_new') }}" class="btn btn-primary float-right">Criar novo agendamento</a></h3>
+    <h3>Agendamentos  <a href="{{ path('agendamento_new') }}" class="btn btn-primary float-right">Criar novo agendamento</a></h3>    
     <div class="card">
         <div class="card-header"> Filtrar por</div>
-        <div class="card-body">
+        <div class="card-body" style="float: left">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Status
@@ -16,7 +36,11 @@
                     <a class="dropdown-item" href="?status=REALIZADO">Realizado</a>
                 </div>
             </div>
+        </div>        
+        <div class="col-md-3">
+            <input type="text" value="{{data|date('d/m/Y')}}" id="dataSel" class="form-control">
         </div>
+
     </div>
 
     <table class="table table-bordered" style="text-align: center">

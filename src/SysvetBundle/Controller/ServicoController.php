@@ -13,22 +13,30 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("servico")
  */
-class ServicoController extends Controller
-{
+class ServicoController extends Controller {
+
     /**
      * Lists all servico entities.
      *
      * @Route("/", name="servico_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction(Request $request) {
+
+        $ord = $request->get('ord');
+
+        if ($ord == "") {
+            $ord = 'idServico';
+        }
+
         $em = $this->getDoctrine()->getManager();
 
-        $servicos = $em->getRepository('SysvetBundle:Servico')->findAll();
+        $servicos = $em->getRepository('SysvetBundle:Servico')
+                ->findBy(array(), array($ord => 'ASC'));
 
         return $this->render('servico/index.html.twig', array(
-            'servicos' => $servicos,
+                    'servicos' => $servicos,
+                    'ord' => $ord
         ));
     }
 
@@ -38,8 +46,8 @@ class ServicoController extends Controller
      * @Route("/new", name="servico_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
+
         $servico = new Servico();
         $form = $this->createForm('SysvetBundle\Form\ServicoType', $servico);
         $form->handleRequest($request);
@@ -53,8 +61,8 @@ class ServicoController extends Controller
         }
 
         return $this->render('servico/new.html.twig', array(
-            'servico' => $servico,
-            'form' => $form->createView(),
+                    'servico' => $servico,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -64,13 +72,13 @@ class ServicoController extends Controller
      * @Route("/{idServico}", name="servico_show")
      * @Method("GET")
      */
-    public function showAction(Servico $servico)
-    {
+    public function showAction(Servico $servico) {
+
         $deleteForm = $this->createDeleteForm($servico);
 
         return $this->render('servico/show.html.twig', array(
-            'servico' => $servico,
-            'delete_form' => $deleteForm->createView(),
+                    'servico' => $servico,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -80,8 +88,8 @@ class ServicoController extends Controller
      * @Route("/{idServico}/edit", name="servico_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Servico $servico)
-    {
+    public function editAction(Request $request, Servico $servico) {
+
         $deleteForm = $this->createDeleteForm($servico);
         $editForm = $this->createForm('SysvetBundle\Form\ServicoType', $servico);
         $editForm->handleRequest($request);
@@ -93,9 +101,9 @@ class ServicoController extends Controller
         }
 
         return $this->render('servico/edit.html.twig', array(
-            'servico' => $servico,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'servico' => $servico,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -105,8 +113,8 @@ class ServicoController extends Controller
      * @Route("/{idServico}", name="servico_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Servico $servico)
-    {
+    public function deleteAction(Request $request, Servico $servico) {
+
         $form = $this->createDeleteForm($servico);
         $form->handleRequest($request);
 
@@ -126,12 +134,13 @@ class ServicoController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Servico $servico)
-    {
+    private function createDeleteForm(Servico $servico) {
+
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('servico_delete', array('idServico' => $servico->getIdservico())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('servico_delete', array('idServico' => $servico->getIdservico())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

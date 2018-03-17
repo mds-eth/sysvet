@@ -23,22 +23,41 @@ class AgendamentoController extends Controller {
      */
     public function indexAction(Request $request) {
 
+        $data = $request->get('data');
+
+        if ($data != "") {
+            $hoje = \DateTime::createFromFormat('d/m/Y', $data);
+        } else {
+            $hoje = new \DateTime();
+        }
+
+        $status = $request->get('status');
+
+        if ($status == "") {
+            $status = 'NOVO';
+        }
+
+        /* chama o gerenciador doctrine */
+
         $em = $this->getDoctrine()->getManager();
-        $hoje = new \DateTime();
 
+        //filtrar agendamentos somente a partir de hoje        
+        //diz a tabela que deve fazer o selec, getRepository faz consulta dentro do Repositório(tabela)
         $query = $em->getRepository('SysvetBundle:Agendamento')
-                ->createQueryBuilder('a');
-
+                ->createQueryBuilder('a'); //da um apelido para a tabela
+        //monta o select com o Doctrine
         $agendamentos = $query->where('a.horario >= :hoje')
                 ->setParameter('hoje', $hoje)
                 ->andWhere('a.status = :status')
-                ->setParameter('status', $request->get('status'))
+                ->setParameter('status', $status)
                 ->orderBy('a.horario', 'ASC')
                 ->getQuery()
                 ->getResult();
 
+        //pega o array e manda para a view desejada
         return $this->render('agendamento/index.html.twig', array(
                     'agendamentos' => $agendamentos,
+                    'data' => $hoje
         ));
     }
 

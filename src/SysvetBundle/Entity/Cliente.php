@@ -47,6 +47,12 @@ class Cliente {
      */
     private $sexo;
 
+    
+    /**
+     * Método toString retorna objeto em string, caso alguem queira imprimir objeto
+     * @return atributo que deseja imprimir
+     */
+    
     public function __toString() {
 
         return $this->nome;

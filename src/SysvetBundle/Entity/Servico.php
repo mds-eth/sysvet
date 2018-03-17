@@ -3,6 +3,7 @@
 namespace SysvetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -19,16 +20,31 @@ class Servico {
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 30,
+     *      minMessage = "O nome deve ter pelo menos {{ limit }} caracteres",
+     *      maxMessage = "O nome deve ter no máximo {{ limit }} caracteres"
+     * )
+     *  @Assert\NotBlank(
+     *  message = "O nome não pode ficar vazio"
+     * )
      */
     private $nomeServico;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     * message = "A descrição não pode ficar vazia"
+     * )
      */
     private $descricaoServico;
 
     /**
      * @ORM\Column(type="decimal", scale=2)
+     * @Assert\NotBlank(
+     * message = "O preço não pode ficar vazio"
+     * )
      */
     private $precoServico;
 

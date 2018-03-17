@@ -41,7 +41,7 @@ class ClienteController extends Controller {
 
         $cliente = new Cliente();
         $cliente->setDataCadastro(new \DateTime());
-        $cliente->setNome("Nome de teste");
+        
         $form = $this->createForm('SysvetBundle\Form\ClienteType', $cliente);
         $form->handleRequest($request);
 
