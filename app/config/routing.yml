@@ -1,7 +1,17 @@
+sysvet_usuario:
+    resource: "@SysvetBundle/Controller/UsuarioController.php"
+    type:     annotation
+
+# app/config/routing.yml
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 sysvet:
     resource: "@SysvetBundle/Controller/"
     type:     annotation
     prefix:   /
+    
+    
 
 #app:
 #   resource: '@AppBundle/Controller/'

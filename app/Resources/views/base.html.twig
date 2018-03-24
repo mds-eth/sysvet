@@ -24,9 +24,11 @@
                 <li>
                     <a href="/">Home</a>
                 </li>
-                <li>
-                    <a href="#">Usuários</a>
-                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a href="{{ path("usuario_index") }}">Usuários</a>
+                    </li>
+                {% endif %}
                 <li>
                     <a href="{{ path("cliente_index") }}">Clientes</a>
                 </li>
@@ -39,8 +41,13 @@
                 <li>
                     <a href="#">Relatórios</a>
                 </li>                
+                {% if app.user != null %}
+                    <li>
+                        <a href="{{ logout_url() }}">{{ app.user.username }} (Logout)</a>
+                    </li> 
+                {% endif %}
             </ul>
-        </div>
+        </div>                
         <div id="page-content-wrapper">
         {% block body %}{% endblock %}
     </div>
