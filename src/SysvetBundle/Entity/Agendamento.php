@@ -45,6 +45,12 @@ class Agendamento {
     private $status;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    private $usuario;
+
+    /**
      * Get id
      *
      * @return integer
@@ -139,6 +145,22 @@ class Agendamento {
      */
     public function getStatus() {
         return $this->status;
+    }
+
+    /**
+     * @param \SysvetBundle\Entity\Usuario
+     */
+    public function getUsuario() {
+        return $this->usuario;
+    }
+
+    /**
+     * @param \SysvetBundle\Entity\Usuario $usuario
+     * @return \SysvetBundle\Entity\Agendamento
+     */
+    public function setUsuario($usuario) {
+        $this->usuario = $usuario;
+        return $this;
     }
 
 }

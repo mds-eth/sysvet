@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Atendimentos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Info</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for atendimento in atendimentos %}
+            <tr>
+                <td><a href="{{ path('atendimento_show', { 'id': atendimento.id }) }}">{{ atendimento.id }}</a></td>
+                <td>{{ atendimento.status }}</td>
+                <td>{% if atendimento.data %}{{ atendimento.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ atendimento.valor }}</td>
+                <td>{{ atendimento.info }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('atendimento_show', { 'id': atendimento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('atendimento_edit', { 'id': atendimento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('atendimento_new') }}">Create a new atendimento</a>
+        </li>
+    </ul>
+{% endblock %}

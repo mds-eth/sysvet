@@ -1,0 +1,58 @@
+<?php
+
+namespace SysvetBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="atendimentos")
+ */
+class Atendimento {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Servico")
+     * @ORM\JoinColumn(name="servico_id", referencedColumnName="id_servico")
+     */
+    private $servico;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    private $usuario;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     */
+    private $cliente;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $data;
+
+    /**
+     * @ORM\Column(type="decimal", scale=2)
+     */
+    private $valor;
+
+    /**
+     * @ORM\Column(type="type")
+     */
+    private $info;
+
+}

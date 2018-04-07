@@ -29,6 +29,11 @@
                         <a href="{{ path("usuario_index") }}">Usuários</a>
                     </li>
                 {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <li>
+                        <a href="{{ path("atendimento_index") }}">Atendimentos</a>
+                    </li>
+                {% endif %}
                 <li>
                     <a href="{{ path("cliente_index") }}">Clientes</a>
                 </li>

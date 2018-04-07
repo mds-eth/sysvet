@@ -1,3 +1,7 @@
+sysvet_atendimento:
+    resource: "@SysvetBundle/Controller/AtendimentoController.php"
+    type:     annotation
+
 sysvet_usuario:
     resource: "@SysvetBundle/Controller/UsuarioController.php"
     type:     annotation

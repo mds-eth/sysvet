@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Atendimento</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ atendimento.id }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ atendimento.status }}</td>
+            </tr>
+            <tr>
+                <th>Data</th>
+                <td>{% if atendimento.data %}{{ atendimento.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Valor</th>
+                <td>{{ atendimento.valor }}</td>
+            </tr>
+            <tr>
+                <th>Info</th>
+                <td>{{ atendimento.info }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('atendimento_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('atendimento_edit', { 'id': atendimento.id }) }}">Edit</a>
+        </li>      
+    </ul>
+{% endblock %}

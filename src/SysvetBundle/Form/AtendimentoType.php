@@ -5,24 +5,26 @@ namespace SysvetBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class AgendamentoType extends AbstractType {
+class AtendimentoType extends AbstractType {
 
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        $atual = date('Y');
-
-        $builder->add('horario', DateTimeType::class, array(
-                    'date_format' => 'ddMMMyyyy',
-                    'years' => range($atual, $atual + 5)
+        $builder->add('status', ChoiceType::class, array(
+                    'choices' => array(
+                        '' => '',
+                        'Aberto' => 'ABERTO',
+                        'Pago' => 'PAGO',
+                        'Cancelado' => 'CANCELADO'
+                    )
                 ))
-                ->add('cliente')
+                ->add('info')
                 ->add('servico')
-                ->add('usuario');
+                ->add('cliente');
     }
 
     /**
@@ -30,7 +32,7 @@ class AgendamentoType extends AbstractType {
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'SysvetBundle\Entity\Agendamento'
+            'data_class' => 'SysvetBundle\Entity\Atendimento'
         ));
     }
 
@@ -38,7 +40,7 @@ class AgendamentoType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'sysvetbundle_agendamento';
+        return 'sysvetbundle_atendimento';
     }
 
 }
