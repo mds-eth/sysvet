@@ -1,3 +1,11 @@
+sysvet_produto:
+    resource: "@SysvetBundle/Controller/ProdutoController.php"
+    type:     annotation
+
+sysvet_produto:
+    resource: "@SysvetBundle/Controller/ProdutoController.php"
+    type:     annotation
+
 sysvet_atendimento:
     resource: "@SysvetBundle/Controller/AtendimentoController.php"
     type:     annotation

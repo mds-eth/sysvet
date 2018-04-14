@@ -1,0 +1,48 @@
+<?php
+
+namespace SysvetBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="produtos")
+ * 
+ */
+class Produto {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $nome;    
+    
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $descricao;
+    
+    
+    /**
+     * @ORM\Column(type="string", scale=2)
+     */
+    private $preco;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $quantidade;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $imagem;
+
+}
