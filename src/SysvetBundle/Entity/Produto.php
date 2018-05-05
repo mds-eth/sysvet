@@ -5,13 +5,12 @@ namespace SysvetBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="produtos")
  * 
  */
-class Produto {
+class Produto implements \JsonSerializable {
 
     /**
      * @ORM\Column(type="integer")
@@ -55,6 +54,15 @@ class Produto {
      *
      * @return integer
      */
+    public function jsonSerialize() {
+
+        return array(
+            "id" => $this->id,
+            "nome" => $this->nome,
+            "preco" => $this->preco
+        );
+    }
+
     public function getId() {
         return $this->id;
     }
